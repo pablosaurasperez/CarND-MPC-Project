@@ -2,7 +2,7 @@
 By Pablo Sauras Perez
 
 ## Results
-As it can be seen in the [results video](https://github.com/pablosaurasperez/CarND-MPC-Project/MPC_result.mov) the vehicle drives safely the whole track at a reference speed of 40mph.
+As it can be seen in the [results video](https://github.com/pablosaurasperez/CarND-MPC-Project/blob/master/MPC_result.mov) the vehicle drives safely the whole track at a reference speed of 40mph.
 
 ## The Model
 
@@ -22,7 +22,7 @@ I transformed the waypoints from the map's coordinate system to the vehicle's co
 
 ## Model Predictive Control with Latency
 
-As stated before, the latency issue is solved by tunning the N and dt hyperparameters. 
+As stated before, the latency issue is solved by tunning the N and dt hyperparameters. Also, limiting the vehicle speed to 40mph helped (higher speeds negatively affect the vehicle behavior).
 In addition, as stated in the lesson, I have tunned the cost function affecting steering by a factor of 500. This influences the solver into keeping sequential steering values closer together (MPC.cpp line 82)
 
 ---
