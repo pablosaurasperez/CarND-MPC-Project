@@ -1,7 +1,35 @@
-# CarND-Controls-MPC
-Self-Driving Car Engineer Nanodegree Program
+# MPC Project
+By Pablo Sauras Perez
+
+## Results
+As it can be seen in the [results video](https://github.com/pablosaurasperez/CarND-MPC-Project/MPC_result.mov) the vehicle drives safely the whole track at a reference speed of 40mph.
+
+## The Model
+
+The model used in this project is reflected in the following equations:
+
+![equations](./img/mpc_eq.jpg)
+
+As it can be seen in the equations above, the model is based on some state update equations. The states are: vehicle position (x,y), velocity (v), heading (psi), cross-track error (cte) and heading error (epsi). The actuators are : the acceleration (a) and the steering angle (delta).
+
+## Timestep Length and Elapsed Duration (N & dt)
+
+Based on the recommendations given in the project Q&A: N=10 and dt=0.1. This gives us a prediction horizon of 1 second. Other values, such as 25 / 0.05 produced the wrong behavior of the vehicle (i.e. high oscillation resulting in the vehicle loosing the track). These last values were used in the MPC quiz of the previous lesson. However, adding the latency produced the erratic value. Thus, some tuning of these values were needed to compensate the latency.
+
+## Polynomial Fitting and MPC Preprocessing
+
+I transformed the waypoints from the map's coordinate system to the vehicle's coordinates system (main.cpp lines 95-105). As stated in the project tips and tricks section, transforming these waypoints make easier to both display them and to calculate the cte and epsi values for the MPC.
+
+## Model Predictive Control with Latency
+
+As stated before, the latency issue is solved by tunning the N and dt hyperparameters. In addition, as stated in the lesson, I have tunned the cost function affecting steering by a factor of 500 so that it influences the solver into keeping sequential steering values closer together (MPC.cpp line 82)
 
 ---
+
+## Submission code location
+The submited code can be found in the **src** directory. In particular, the following files have been modified:
+- main.cpp
+- MPC.cpp
 
 ## Dependencies
 
