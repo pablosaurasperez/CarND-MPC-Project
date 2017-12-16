@@ -14,15 +14,16 @@ As it can be seen in the equations above, the model is based on some state updat
 
 ## Timestep Length and Elapsed Duration (N & dt)
 
-Based on the recommendations given in the project Q&A: N=10 and dt=0.1. This gives us a prediction horizon of 1 second. Other values, such as 25 / 0.05 produced the wrong behavior of the vehicle (i.e. high oscillation resulting in the vehicle loosing the track). These last values were used in the MPC quiz of the previous lesson. However, adding the latency produced the erratic value. Thus, some tuning of these values were needed to compensate the latency.
+Based on the recommendations given in the project Q&A: N=10 and dt=0.1. This gives us a prediction horizon of 1 second. Other values, such as 25 / 0.05 produced the wrong behavior of the vehicle (i.e. high oscillation resulting in the vehicle loosing the track). These last values were used in the MPC quiz of the previous lesson. However, adding the latency produced the erratic behavior. Thus, some tuning of these hyperparameters were needed to compensate the latency.
 
 ## Polynomial Fitting and MPC Preprocessing
 
-I transformed the waypoints from the map's coordinate system to the vehicle's coordinates system (main.cpp lines 95-105). As stated in the project tips and tricks section, transforming these waypoints make easier to both display them and to calculate the cte and epsi values for the MPC.
+I transformed the waypoints from the map's coordinate system to the vehicle's coordinate system (main.cpp lines 95-105). As stated in the project tips and tricks section, transforming these waypoints make easier to both display them and to calculate the cte and epsi values for the MPC.
 
 ## Model Predictive Control with Latency
 
-As stated before, the latency issue is solved by tunning the N and dt hyperparameters. In addition, as stated in the lesson, I have tunned the cost function affecting steering by a factor of 500 so that it influences the solver into keeping sequential steering values closer together (MPC.cpp line 82)
+As stated before, the latency issue is solved by tunning the N and dt hyperparameters. 
+In addition, as stated in the lesson, I have tunned the cost function affecting steering by a factor of 500. This influences the solver into keeping sequential steering values closer together (MPC.cpp line 82)
 
 ---
 
